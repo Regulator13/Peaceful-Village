@@ -1,29 +1,27 @@
 /// @description Set game variables
 randomise()
 scr_setup_game()
-scr_setup_rooms()
+relationship_update_buffer = 150
 #region Time
 hour = 6 //24 hour day cycle
 day = 0
 hour_buffer = 240 //Time in an hour
 col_0 = #000000
-col_1 = #011a00
-col_2 = #023800
-col_3 = #025400
-col_4 = #036c00
-col_5 = #048400
-col_6 = #049a00
-col_7 = #04b200
-col_8 = #05c600
-col_9 = #05d500
-col_10 = #05ec00
-col_11 = #06ff00
-col_12 = #06ff00
+col_1 = #141414
+col_2 = #282828
+col_3 = #3c3c3c
+col_4 = #505050
+col_5 = #646464
+col_6 = #787878
+col_7 = #8c8c8c
+col_8 = #a0a0a0
+col_9 = #b4b4b4
+col_10 = #c8c8c8
+col_11 = #dcdcdc
+col_12 = #ffffff
 time_colors = [col_0, col_0, col_0, col_1, col_3, col_5, col_6, col_7, col_8, col_9, col_10, col_11, col_12, col_12, col_11, col_10, col_9, col_8, col_7, col_6, col_5, col_4, col_2, col_0, col_0]
 alarm_set(0, hour_buffer)
-lay_id = layer_get_id("lay_background")
-back_id = layer_background_get_id(lay_id)
-layer_background_blend(back_id, time_colors[hour]) 
+event_user(0) //Update the room
 #endregion
 
 #region Spawn Baddies

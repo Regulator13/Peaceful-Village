@@ -103,11 +103,47 @@ if not sleeping{
 		tertiary()
 	}
 	//Action
-	if keyboard_check(ACTION){
+	if keyboard_check_released(ACTION){
 		//Sleep
 		if place_meeting(x, y, obj_base){
 			sleeping = true
 			alarm_set(2, sleep_duration)
+		}
+		if place_meeting(x, y, obj_inn){
+			sleeping = true
+			alarm_set(2, sleep_duration)
+			regen_mana = true
+		}
+		//Travel
+		var Travel = instance_place(x, y, par_travel)
+		if instance_exists(Travel){
+			if not Travel.closed{
+				if can_travel{
+					if scr_check_travel_allowed(Travel.dir){
+						scr_go_to_adj_room(Travel.dir)
+						update_room = true
+					}
+					//Wait before allowing travel again
+					can_travel = false
+					alarm_set(1, travel_buffer)
+				}
+			}
+		}
+		//Read
+		var Readable = instance_place(x, y, par_chat)
+		if instance_exists(Readable){
+			chat_x = Readable.x
+			chat_y = Readable.y
+			if is_array(Readable.num){
+				read_num = Readable.num[0]
+				read_num_last = array_length(Readable.num)
+			}
+			else{
+				read_num = Readable.num
+				read_num_last = read_num
+			}
+			alarm_set(3, 75 + string_length(global.chat[global.room_x][global.room_y][read_num])*2.8)
+			num_lines = ceil(string_width(global.chat[global.room_x][global.room_y][read_num])/200)
 		}
 	}
 }
@@ -140,6 +176,7 @@ for (var i=0; i<4; i++){
 if sleeping{
 	hp += sleep_hp
 	energy += recovery_rate //Energy restores twice as fast while sleeping
+	if regen_mana mana += sleep_mana
 }
 else{
 	attack_buffer -= 1
