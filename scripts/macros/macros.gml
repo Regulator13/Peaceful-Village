@@ -20,3 +20,19 @@
 
 //Margins and buffers
 #macro HS 16 //half the default sprite size
+#macro ROOM_BUFFER 96 //How far the character appears from the edge of the room when traveling to an adjacent room
+
+//Room types
+#macro WILD 0
+#macro TOWN 1
+#macro CHALLENGE 2
+
+//Directions
+#macro NORTH 0
+#macro EAST 1
+#macro SOUTH 2
+#macro WEST 3
+
+//Time
+#macro NIGHT_START 22
+#macro NIGHT_END 4

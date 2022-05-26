@@ -27,8 +27,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Map Features",
+    "path": "folders/Objects/Map Features.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_mine",
